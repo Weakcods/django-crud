@@ -1,55 +1,90 @@
-# Django Welcome Page Project
+# Student Organization Management System
 
-A simple Django project showing a welcome page with styling.
+A Django-based system for managing students, colleges, programs, and organizations.
 
-## Project Status
+## Features
 
-✅ Successfully installed and running
-
-![Django installation](https://github.com/Weakcods/django-crud/blob/03b1e51b51cc0cb692dcad58d96cd33d71b5e92d/assets/pic-dj.PNG)
+- Dashboard with statistics
+- CRUD operations for:
+  - Students
+  - Colleges
+  - Programs
+  - Organizations
+  - Organization Members
 
 ## Setup Instructions
 
-1. Activate virtual environment:
+1. Create and activate virtual environment:
 ```bash
+python -m venv myenv
 myenv\Scripts\activate.bat
 ```
 
-2. Navigate to project directory:
+2. Install dependencies:
+```bash
+pip install django
+```
+
+3. Navigate to project directory:
 ```bash
 cd try
 ```
 
-3. Run development server:
+4. Apply migrations:
+```bash
+python manage.py makemigrations core
+python manage.py migrate
+```
+
+5. Create superuser:
+```bash
+python manage.py createsuperuser
+```
+
+6. Run development server:
 ```bash
 python manage.py runserver
 ```
 
-4. Visit http://127.0.0.1:8000/ in your browser
+7. Visit:
+   - Main site: http://127.0.0.1:8000/
+   - Admin interface: http://127.0.0.1:8000/admin
 
 ## Project Structure
 
 ```
-dj/                         # Root directory
-├── myenv/                  # Virtual environment
+dj/
 ├── try/                    # Project directory
-    ├── manage.py          # Django management script
+    ├── core/              # Main application
+    │   ├── models.py      # Database models
+    │   ├── views.py       # View controllers
+    │   ├── urls.py        # URL routing
+    │   └── admin.py       # Admin interface
     ├── templates/         # HTML templates
-    │   └── welcome.html   # Welcome page template
-    ├── static/            # Static files
-    │   └── css/          # CSS stylesheets
-    │       └── style.css # Styles for welcome page
-    └── try/              # Project configuration
-        ├── settings.py   # Project settings
-        ├── urls.py       # URL configurations
-        └── ...          # Other Django files
+    │   ├── base.html      # Base template
+    │   └── core/          # Core app templates
+    │       ├── dashboard.html
+    │       └── student_list.html
+    ├── static/           # Static files
+    │   └── css/          
+    │       └── style.css
+    └── try/              # Project settings
+        ├── settings.py
+        └── urls.py
 ```
 
-## Key Files
+## Models
 
-- `templates/welcome.html` - Main welcome page template
-- `static/css/style.css` - Styling for welcome page
-- `try/settings.py` - Project configuration
-- `try/urls.py` - URL routing
+- College: name, code, description
+- Program: name, code, description, college (FK)
+- Organization: name, code, description
+- Student: first_name, last_name, student_id, program (FK)
+- OrgMember: student (FK), organization (FK), position
+
+## Views
+
+- Dashboard: Overview with statistics
+- List views for all models
+- Create forms for all models
 
 
