@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    background-color: #f8f9fa;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -25,4 +25,33 @@ h1 {
 p {
     color: #5f6368;
     font-size: 18px;
+}
+
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.btn-action {
+    margin-right: 5px;
+}
+
+.stats-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.stats-card h3 {
+    color: #007bff;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.stats-card p {
+    color: #6c757d;
+    margin: 0;
 }
