@@ -1,0 +1,230 @@
+[
+    {
+        "model": "core.college",
+        "pk": 1,
+        "fields": {
+            "name": "College of Computing and Information Sciences",
+            "code": "CCIS",
+            "description": "Focus on computer science and IT education"
+        }
+    },
+    {
+        "model": "core.college",
+        "pk": 2,
+        "fields": {
+            "name": "College of Engineering",
+            "code": "COE",
+            "description": "Engineering and technology programs"
+        }
+    },
+    {
+        "model": "core.college",
+        "pk": 3,
+        "fields": {
+            "name": "College of Business",
+            "code": "COB",
+            "description": "Business and management studies"
+        }
+    },
+    {
+        "model": "core.college",
+        "pk": 4,
+        "fields": {
+            "name": "College of Arts and Sciences",
+            "code": "CAS",
+            "description": "Liberal arts and natural sciences"
+        }
+    },
+    {
+        "model": "core.college",
+        "pk": 5,
+        "fields": {
+            "name": "College of Education",
+            "code": "COE",
+            "description": "Teacher education and development"
+        }
+    },
+    {
+        "model": "core.college",
+        "pk": 6,
+        "fields": {
+            "name": "College of Medicine",
+            "code": "COM",
+            "description": "Medical and healthcare education"
+        }
+    },
+    {
+        "model": "core.college",
+        "pk": 7,
+        "fields": {
+            "name": "College of Law",
+            "code": "COL",
+            "description": "Legal education and jurisprudence"
+        }
+    },
+    {
+        "model": "core.college",
+        "pk": 8,
+        "fields": {
+            "name": "College of Architecture",
+            "code": "COA",
+            "description": "Architectural design and planning"
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 1,
+        "fields": {
+            "name": "Bachelor of Science in Computer Science",
+            "code": "BSCS",
+            "description": "Computer Science program",
+            "college": 1
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 2,
+        "fields": {
+            "name": "Bachelor of Science in Information Technology",
+            "code": "BSIT",
+            "description": "Information Technology program",
+            "college": 1
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 3,
+        "fields": {
+            "name": "Bachelor of Science in Civil Engineering",
+            "code": "BSCE",
+            "description": "Civil Engineering program",
+            "college": 2
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 4,
+        "fields": {
+            "name": "Bachelor of Science in Business Administration",
+            "code": "BSBA",
+            "description": "Business Administration program",
+            "college": 3
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 5,
+        "fields": {
+            "name": "Bachelor of Arts in Psychology",
+            "code": "BAP",
+            "description": "Psychology program",
+            "college": 4
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 6,
+        "fields": {
+            "name": "Bachelor of Secondary Education",
+            "code": "BSED",
+            "description": "Secondary Education program",
+            "college": 5
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 7,
+        "fields": {
+            "name": "Doctor of Medicine",
+            "code": "MD",
+            "description": "Medicine program",
+            "college": 6
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 8,
+        "fields": {
+            "name": "Juris Doctor",
+            "code": "JD",
+            "description": "Law program",
+            "college": 7
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 9,
+        "fields": {
+            "name": "Bachelor of Science in Architecture",
+            "code": "BSA",
+            "description": "Architecture program",
+            "college": 8
+        }
+    },
+    {
+        "model": "core.program",
+        "pk": 10,
+        "fields": {
+            "name": "Bachelor of Science in Software Engineering",
+            "code": "BSSE",
+            "description": "Software Engineering program",
+            "college": 1
+        }
+    },
+    {
+        "model": "core.organization",
+        "pk": 1,
+        "fields": {
+            "name": "Association of Computing Students",
+            "code": "ACS",
+            "description": "Student organization for computing students"
+        }
+    },
+    {
+        "model": "core.organization",
+        "pk": 2,
+        "fields": {
+            "name": "Society of Information Technology Enthusiasts",
+            "code": "SITE",
+            "description": "Organization for IT students"
+        }
+    },
+    {
+        "model": "core.student",
+        "pk": 1,
+        "fields": {
+            "first_name": "Noe",
+            "last_name": "Dela conception",
+            "student_id": "2023-0001",
+            "program": 1
+        }
+    },
+    {
+        "model": "core.student",
+        "pk": 2,
+        "fields": {
+            "first_name": "Joshua",
+            "last_name": "Bacay",
+            "student_id": "2023-0002",
+            "program": 2
+        }
+    },
+    {
+        "model": "core.orgmember",
+        "pk": 1,
+        "fields": {
+            "student": 1,
+            "organization": 1,
+            "position": "President"
+        }
+    },
+    {
+        "model": "core.orgmember",
+        "pk": 2,
+        "fields": {
+            "student": 2,
+            "organization": 2,
+            "position": "Secretary"
+        }
+    }
+]

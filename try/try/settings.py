@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',  # Add this line
+    'core.apps.CoreConfig',  # Make sure this line exists
 ]
 
 MIDDLEWARE = [
@@ -125,3 +125,18 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Session Settings
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Session expires when browser closes
+SESSION_COOKIE_AGE = 3600  # Session expires after 1 hour (in seconds)
+SESSION_SAVE_EVERY_REQUEST = True  # Update session on every request
+
+# Admin Site Settings
+ADMIN_SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Admin session expires when browser closes
+ADMIN_SESSION_COOKIE_AGE = 3600  # Admin session expires after 1 hour
+ADMIN_URL = 'admin/'  # Admin URL path
+
+# Authentication Settings
+LOGIN_REDIRECT_URL = '/'  # Redirect after login
+LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+LOGIN_URL = 'admin:login'  # Login URL

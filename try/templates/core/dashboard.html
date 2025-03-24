@@ -3,29 +3,30 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="row">
+<h2 class="mb-4">Dashboard Overview</h2>
+<div class="row g-4">
     <div class="col-md-3">
-        <div class="card stats-card">
+        <div class="stats-card">
             <h3>{{ students_count }}</h3>
-            <p>Students</p>
+            <p>Total Students</p>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card stats-card">
+        <div class="stats-card">
             <h3>{{ colleges_count }}</h3>
-            <p>Colleges</p>
+            <p>Total Colleges</p>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card stats-card">
+        <div class="stats-card">
             <h3>{{ programs_count }}</h3>
-            <p>Programs</p>
+            <p>Total Programs</p>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card stats-card">
+        <div class="stats-card">
             <h3>{{ organizations_count }}</h3>
-            <p>Organizations</p>
+            <p>Total Organizations</p>
         </div>
     </div>
 </div>
