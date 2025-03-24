@@ -8,6 +8,6 @@
 ## To navigate
 
 - myenv\Scripts\activate.bat
-- cd crud
+- cd try
 
 
