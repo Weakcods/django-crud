@@ -11,14 +11,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='college',
-            name='code',
-        ),
-        migrations.RemoveField(
-            model_name='college',
-            name='description',
-        ),
         migrations.AddField(
             model_name='orgmember',
             name='date_joined',
