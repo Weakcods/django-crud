@@ -23,3 +23,17 @@ class Command(BaseCommand):
                     )
                     colleges.append(college)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(colleges)} colleges'))
+
+                # Create Programs
+                programs = []
+                program_prefixes = ['BS', 'BA', 'BEd', 'BSc']
+                for college in colleges:
+                    for _ in range(random.randint(2, 4)):
+                        program = Program.objects.create(
+                            name=f"{random.choice(program_prefixes)} in {fake.job()}",
+                            code=f"{fake.lexify(text='???').upper()}",
+                            description=fake.text(),
+                            college=college
+                        )
+                        programs.append(program)
+                self.stdout.write(self.style.SUCCESS(f'Created {len(programs)} programs'))
