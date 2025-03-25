@@ -2,16 +2,12 @@ from django.db import models
 
 class College(models.Model):
     name = models.CharField(max_length=100)
-    code = models.CharField(max_length=10)
-    description = models.TextField()
 
     def __str__(self):
         return self.name
 
 class Program(models.Model):
     name = models.CharField(max_length=100)
-    code = models.CharField(max_length=10)
-    description = models.TextField()
     college = models.ForeignKey(College, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -19,7 +15,7 @@ class Program(models.Model):
 
 class Organization(models.Model):
     name = models.CharField(max_length=100)
-    code = models.CharField(max_length=10)
+    college = models.ForeignKey(College, on_delete=models.CASCADE)
     description = models.TextField()
 
     def __str__(self):
@@ -37,7 +33,7 @@ class Student(models.Model):
 class OrgMember(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
-    position = models.CharField(max_length=50)
+    date_joined = models.DateField(verbose_name="Date Joined")
 
     def __str__(self):
         return f"{self.student} - {self.organization}"
