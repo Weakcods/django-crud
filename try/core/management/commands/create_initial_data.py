@@ -60,3 +60,15 @@ class Command(BaseCommand):
                     )
                     students.append(student)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(students)} students'))
+
+                # Create OrgMembers
+                positions = ['President', 'Vice President', 'Secretary', 'Treasurer', 'Member']
+                org_members = []
+                for student in random.sample(students, 30):  # Make 30 students org members
+                    org_member = OrgMember.objects.create(
+                        student=student,
+                        organization=random.choice(organizations),
+                        position=random.choice(positions)
+                    )
+                    org_members.append(org_member)
+                self.stdout.write(self.style.SUCCESS(f'Created {len(org_members)} organization members'))
