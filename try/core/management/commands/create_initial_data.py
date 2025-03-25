@@ -1,8 +1,10 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
+from django.utils import timezone
 from faker import Faker
 from core.models import College, Program, Organization, Student, OrgMember
 import random
+from datetime import timedelta
 
 class Command(BaseCommand):
     help = 'Creates initial data with faker'
@@ -10,17 +12,27 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker()
         
+        # Check if data already exists
+        if College.objects.exists():
+            self.stdout.write(self.style.WARNING('Data already exists. Skipping...'))
+            return
+
         try:
             with transaction.atomic():
                 # Create Colleges
                 colleges = []
-                college_codes = ['CCIS', 'COE', 'COB', 'CAS', 'COEd', 'COM', 'COL', 'COA']
-                for i in range(8):
-                    college = College.objects.create(
-                        name=f"College of {fake.company()}",
-                        code=college_codes[i],
-                        description=fake.text()
-                    )
+                college_names = [
+                    "College of Engineering",
+                    "College of Business",
+                    "College of Arts and Sciences",
+                    "College of Education",
+                    "College of Medicine",
+                    "College of Law",
+                    "College of Architecture",
+                    "College of Computing"
+                ]
+                for name in college_names:
+                    college = College.objects.create(name=name)
                     colleges.append(college)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(colleges)} colleges'))
 
@@ -31,8 +43,6 @@ class Command(BaseCommand):
                     for _ in range(random.randint(2, 4)):
                         program = Program.objects.create(
                             name=f"{random.choice(program_prefixes)} in {fake.job()}",
-                            code=f"{fake.lexify(text='???').upper()}",
-                            description=fake.text(),
                             college=college
                         )
                         programs.append(program)
@@ -40,37 +50,44 @@ class Command(BaseCommand):
 
                 # Create Organizations
                 organizations = []
-                for _ in range(10):
-                    org = Organization.objects.create(
-                        name=fake.company(),
-                        code=fake.lexify(text='???').upper(),
-                        description=fake.text()
-                    )
-                    organizations.append(org)
+                for college in colleges:
+                    for _ in range(2):  # 2 organizations per college
+                        org = Organization.objects.create(
+                            name=fake.company(),
+                            description=fake.paragraph(),
+                            college=college
+                        )
+                        organizations.append(org)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(organizations)} organizations'))
 
                 # Create Students
                 students = []
+                current_year = timezone.now().year
                 for _ in range(50):
                     student = Student.objects.create(
                         first_name=fake.first_name(),
+                        middle_name=fake.first_name() if random.choice([True, False]) else None,
                         last_name=fake.last_name(),
-                        student_id=f"{fake.year()}-{fake.unique.random_number(digits=4)}",
+                        student_id=f"{current_year}-{fake.unique.random_number(digits=4)}",
                         program=random.choice(programs)
                     )
                     students.append(student)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(students)} students'))
 
                 # Create OrgMembers
-                positions = ['President', 'Vice President', 'Secretary', 'Treasurer', 'Member']
                 org_members = []
+                current_date = timezone.now().date()
                 for student in random.sample(students, 30):  # Make 30 students org members
-                    org_member = OrgMember.objects.create(
-                        student=student,
-                        organization=random.choice(organizations),
-                        position=random.choice(positions)
-                    )
-                    org_members.append(org_member)
+                    # Only create membership for organizations in student's college
+                    valid_orgs = [org for org in organizations if org.college == student.program.college]
+                    if valid_orgs:
+                        join_date = current_date - timedelta(days=random.randint(0, 365))
+                        org_member = OrgMember.objects.create(
+                            student=student,
+                            organization=random.choice(valid_orgs),
+                            date_joined=join_date
+                        )
+                        org_members.append(org_member)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(org_members)} organization members'))
 
         except Exception as e:
