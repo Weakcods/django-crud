@@ -78,4 +78,3 @@ class Command(BaseCommand):
             return
 
         self.stdout.write(self.style.SUCCESS('Successfully created initial data'))
-       
