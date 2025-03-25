@@ -1,0 +1,66 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stats-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    background: white;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+}
+
+.stats-card h3 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #0d6efd;
+    margin-bottom: 0.5rem;
+}
+
+.stats-card p {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+table {
+    font-size: 0.95rem;
+}
+
+thead {
+    background-color: #f8f9fa;
+}
+
+.btn {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 7px;
+}
+
+.navbar-nav.mx-auto .nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav.mx-auto .nav-link:hover {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar-nav.mx-auto {
+    gap: 1rem;
+}

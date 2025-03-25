@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-se81w35y30w4i53o1i)-*e*@xxc$al_@ai^roo6%hoq$6hsr6$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True  # Set to True for development, False for production
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['joshuawa.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -49,6 +49,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if not DEBUG:
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+else:
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
 
 ROOT_URLCONF = 'try.urls'
 
@@ -117,9 +126,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'  # Fixed path
+    BASE_DIR / 'static'
 ]
+
+# Create static directory if it doesn't exist
+import os
+STATIC_DIR = BASE_DIR / 'static'
+if not os.path.exists(STATIC_DIR):
+    os.makedirs(STATIC_DIR)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
