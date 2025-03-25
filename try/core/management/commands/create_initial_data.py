@@ -72,3 +72,10 @@ class Command(BaseCommand):
                     )
                     org_members.append(org_member)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(org_members)} organization members'))
+
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f'Error: {str(e)}'))
+            return
+
+        self.stdout.write(self.style.SUCCESS('Successfully created initial data'))
+       
