@@ -37,3 +37,14 @@ class Command(BaseCommand):
                         )
                         programs.append(program)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(programs)} programs'))
+
+                # Create Organizations
+                organizations = []
+                for _ in range(10):
+                    org = Organization.objects.create(
+                        name=fake.company(),
+                        code=fake.lexify(text='???').upper(),
+                        description=fake.text()
+                    )
+                    organizations.append(org)
+                self.stdout.write(self.style.SUCCESS(f'Created {len(organizations)} organizations'))
