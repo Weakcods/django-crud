@@ -48,3 +48,15 @@ class Command(BaseCommand):
                     )
                     organizations.append(org)
                 self.stdout.write(self.style.SUCCESS(f'Created {len(organizations)} organizations'))
+
+                # Create Students
+                students = []
+                for _ in range(50):
+                    student = Student.objects.create(
+                        first_name=fake.first_name(),
+                        last_name=fake.last_name(),
+                        student_id=f"{fake.year()}-{fake.unique.random_number(digits=4)}",
+                        program=random.choice(programs)
+                    )
+                    students.append(student)
+                self.stdout.write(self.style.SUCCESS(f'Created {len(students)} students'))
