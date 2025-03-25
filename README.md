@@ -164,4 +164,23 @@ dj/
 - Clean table layouts
 - Modern card shadows and transitions
 
+## Generate Fake Data
+
+1. Install Faker:
+```bash
+pip install Faker
+```
+
+2. Run the command:
+```bash
+python manage.py create_initial_data
+```
+
+This will create:
+- 8 Colleges
+- 2-4 Programs per College
+- 10 Organizations
+- 50 Students
+- 30 Organization Members
+
 
